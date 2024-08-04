@@ -2,7 +2,6 @@ package org.example;
 
 import java.util.Date;
 
-
 public class DadoClimatico
 {
     private Date data;
@@ -17,6 +16,8 @@ public class DadoClimatico
         this.umidadePorcentagem = umidadePorcentagem;
         this.pressaoPascal = pressaoPascal;
     }
+
+
 
     public Date getData()
     {
