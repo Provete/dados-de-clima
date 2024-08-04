@@ -1,9 +1,9 @@
-package org.example;
+package org.dadosdeclima.presenter;
 
 import java.util.ArrayList;
-import java.util.Date;
 
-import org.example.observable.*;
+import org.dadosdeclima.model.DadoClimatico;
+import org.dadosdeclima.observable.*;
 
 public class DadosPresenter extends Observable
 {
@@ -14,9 +14,9 @@ public class DadosPresenter extends Observable
         dadosClimaticos = new ArrayList<DadoClimatico>();
     }
 
-    public void adicionarDado(Date data, float temperaturaCelsius, float umidadePorcentagem, float pressaoPascal)
+    public void adicionarDado(float temperaturaCelsius, float umidadePorcentagem, float pressaoPascal)
     {
-        DadoClimatico dadoClimatico = new DadoClimatico(data, temperaturaCelsius, umidadePorcentagem, pressaoPascal);
+        DadoClimatico dadoClimatico = new DadoClimatico(temperaturaCelsius, umidadePorcentagem, pressaoPascal);
         this.dadosClimaticos.add(dadoClimatico);
         this.notify(dadoClimatico);
     }
@@ -26,4 +26,6 @@ public class DadosPresenter extends Observable
         this.dadosClimaticos.remove(dado);
         this.notify(dado);
     }
+
+
 }

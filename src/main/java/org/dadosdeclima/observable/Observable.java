@@ -1,8 +1,8 @@
-package org.example.observable;
+package org.dadosdeclima.observable;
 
 import java.util.ArrayList;
-import org.example.observable.Observer;
-import org.example.DadoClimatico;
+
+import org.dadosdeclima.model.DadoClimatico;
 
 public class Observable
 {
