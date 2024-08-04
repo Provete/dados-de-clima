@@ -9,9 +9,8 @@ public class DadoClimatico
     private float umidadePorcentagem;
     private float pressaoPascal;
 
-    public DadoClimatico(Date data, float temperaturaCelsius, float umidadePorcentagem, float pressaoPascal)
+    public DadoClimatico(float temperaturaCelsius, float umidadePorcentagem, float pressaoPascal)
     {
-        this.data = data;
         this.temperaturaCelsius = temperaturaCelsius;
         this.umidadePorcentagem = umidadePorcentagem;
         this.pressaoPascal = pressaoPascal;

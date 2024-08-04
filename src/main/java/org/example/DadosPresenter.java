@@ -14,9 +14,9 @@ public class DadosPresenter extends Observable
         dadosClimaticos = new ArrayList<DadoClimatico>();
     }
 
-    public void adicionarDado(Date data, float temperaturaCelsius, float umidadePorcentagem, float pressaoPascal)
+    public void adicionarDado(float temperaturaCelsius, float umidadePorcentagem, float pressaoPascal)
     {
-        DadoClimatico dadoClimatico = new DadoClimatico(data, temperaturaCelsius, umidadePorcentagem, pressaoPascal);
+        DadoClimatico dadoClimatico = new DadoClimatico(temperaturaCelsius, umidadePorcentagem, pressaoPascal);
         this.dadosClimaticos.add(dadoClimatico);
         this.notify(dadoClimatico);
     }

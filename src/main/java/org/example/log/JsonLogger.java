@@ -1,48 +1,42 @@
-package org.example;
+package org.example.log;
 
 import java.io.BufferedWriter;
-import org.example.DadoClimatico;
-import java.util.Date;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Calendar;
-import java.time.LocalDate;
-import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-
-public class Logger
+public class JsonLogger implements Logger
 {
     private String pathArquivo;
 
     private static String jsonFormat = "" +
             "{\n" +
-                "\t\"data\": \"%s\"\n" +
-                "\t\"hora\": \"%s\"\n" +
-                "\t\"operacao\": \"%s\"\n" +
+            "\t\"data\": \"%s\"\n" +
+            "\t\"hora\": \"%s\"\n" +
+            "\t\"operacao\": \"%s\"\n" +
             "}\n";
 
-    public Logger(String pathArquivo)
+    public JsonLogger(String pathArquivo)
     {
         this.pathArquivo = pathArquivo;
     }
 
-    public enum Operacao
-    {
-        INSERCAO,
-        REMOCAO
-    }
-
-    public void toJson(Date data, Operacao op) throws IOException
+    @Override
+    public void log(String operacao)
     {
         File arquivo = new File(pathArquivo);
 
         criarSeInexistente(arquivo);
+        LocalDateTime agora = LocalDateTime.now();
+        DateTimeFormatter formatadorData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatadorHora = DateTimeFormatter.ofPattern("HH:mm:ss");
 
-        String operacao = op == Operacao.INSERCAO? "Inserção" : "Remoção";
-        String dataString = data.getDay() + "/" + data.getMonth() + "/" + data.getYear();
+        String dataFormatada = agora.format(formatadorData);
+        String horaFormatada = agora.format(formatadorHora);
 
-        String json = String.format(Logger.jsonFormat, dataString, data.getHours()-3, operacao);
+        String json = String.format(JsonLogger.jsonFormat, dataFormatada, horaFormatada, operacao);
 
         BufferedWriter bufferedWriter = null;
         try
@@ -51,7 +45,7 @@ public class Logger
             bufferedWriter = new BufferedWriter(fileWriter);
 
             bufferedWriter.write(json);
-            System.out.println("Json salvo com sucesso\n" + json);
+            System.out.println("json salvo com sucesso\n" + json);
 
         } catch (IOException e)
         {
@@ -62,7 +56,7 @@ public class Logger
                 if(arquivo != null)
                     bufferedWriter.close();
             }catch(Exception e){
-                System.out.println("Error in closing the BufferedWriter"+e);
+                System.out.println("Error in closing the BufferedWriter" + e);
             }
         }
     }
