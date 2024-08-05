@@ -33,10 +33,10 @@ public class UltimaAtt extends javax.swing.JInternalFrame {
         ultUmi = new javax.swing.JLabel();
         ultPress = new javax.swing.JLabel();
         ultDat = new javax.swing.JLabel();
-        ultTemperatura = new javax.swing.JTextField();
-        ultUmidade = new javax.swing.JTextField();
-        ultPressão = new javax.swing.JTextField();
-        ultdData = new javax.swing.JTextField();
+        UltTemperatura = new javax.swing.JLabel();
+        UltUmidade = new javax.swing.JLabel();
+        UltPressao = new javax.swing.JLabel();
+        UltData = new javax.swing.JLabel();
 
         setTitle("Ultima Atualização do Tempo");
 
@@ -48,73 +48,59 @@ public class UltimaAtt extends javax.swing.JInternalFrame {
 
         ultDat.setText("Data");
 
-        ultTemperatura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ultTemperaturaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ultUmi)
+                    .addComponent(ultPress)
+                    .addComponent(ultDat)
+                    .addComponent(ultTemp))
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(ultTemp)
-                        .addGap(30, 30, 30)
-                        .addComponent(ultTemperatura, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ultUmi)
-                            .addComponent(ultPress)
-                            .addComponent(ultDat))
-                        .addGap(49, 49, 49)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ultUmidade)
-                            .addComponent(ultPressão)
-                            .addComponent(ultdData))))
+                    .addComponent(UltTemperatura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(UltUmidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(UltPressao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(UltData, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ultTemp)
-                    .addComponent(ultTemperatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                    .addComponent(UltTemperatura))
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ultUmi)
-                    .addComponent(ultUmidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                    .addComponent(UltUmidade))
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ultPress)
-                    .addComponent(ultPressão, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                    .addComponent(UltPressao))
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ultDat)
-                    .addComponent(ultdData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(UltData))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ultTemperaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ultTemperaturaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ultTemperaturaActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel UltData;
+    private javax.swing.JLabel UltPressao;
+    private javax.swing.JLabel UltTemperatura;
+    private javax.swing.JLabel UltUmidade;
     private javax.swing.JLabel ultDat;
     private javax.swing.JLabel ultPress;
-    private javax.swing.JTextField ultPressão;
     private javax.swing.JLabel ultTemp;
-    private javax.swing.JTextField ultTemperatura;
     private javax.swing.JLabel ultUmi;
-    private javax.swing.JTextField ultUmidade;
-    private javax.swing.JTextField ultdData;
     // End of variables declaration//GEN-END:variables
 }

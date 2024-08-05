@@ -31,10 +31,10 @@ public class TelaDadosMedios extends javax.swing.JInternalFrame {
         medUmidade = new javax.swing.JLabel();
         medPressao = new javax.swing.JLabel();
         medNumReg = new javax.swing.JLabel();
-        medFieldTemperatura = new javax.swing.JTextField();
-        medFieldUmidade = new javax.swing.JTextField();
-        medFieldPressao = new javax.swing.JTextField();
-        medFieldNumReg = new javax.swing.JTextField();
+        MedTemp = new javax.swing.JLabel();
+        MedUmi = new javax.swing.JLabel();
+        MedPress = new javax.swing.JLabel();
+        MedReg = new javax.swing.JLabel();
 
         setTitle("Dados Médios");
 
@@ -59,32 +59,32 @@ public class TelaDadosMedios extends javax.swing.JInternalFrame {
                     .addComponent(medUmidade))
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(medFieldTemperatura, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                    .addComponent(medFieldUmidade)
-                    .addComponent(medFieldPressao)
-                    .addComponent(medFieldNumReg))
+                    .addComponent(MedTemp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(MedUmi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(MedPress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(MedReg, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                 .addGap(60, 60, 60))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(medTemperatura)
-                    .addComponent(medFieldTemperatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                    .addComponent(MedTemp))
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(medFieldUmidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(medUmidade))
-                .addGap(20, 20, 20)
+                    .addComponent(medUmidade)
+                    .addComponent(MedUmi))
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(medFieldPressao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(medPressao))
-                .addGap(20, 20, 20)
+                    .addComponent(medPressao)
+                    .addComponent(MedPress))
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(medFieldNumReg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(medNumReg))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(medNumReg)
+                    .addComponent(MedReg))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -92,10 +92,10 @@ public class TelaDadosMedios extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField medFieldNumReg;
-    private javax.swing.JTextField medFieldPressao;
-    private javax.swing.JTextField medFieldTemperatura;
-    private javax.swing.JTextField medFieldUmidade;
+    private javax.swing.JLabel MedPress;
+    private javax.swing.JLabel MedReg;
+    private javax.swing.JLabel MedTemp;
+    private javax.swing.JLabel MedUmi;
     private javax.swing.JLabel medNumReg;
     private javax.swing.JLabel medPressao;
     private javax.swing.JLabel medTemperatura;

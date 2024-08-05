@@ -32,10 +32,10 @@
               </Group>
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="medFieldTemperatura" pref="150" max="32767" attributes="0"/>
-                  <Component id="medFieldUmidade" alignment="0" max="32767" attributes="0"/>
-                  <Component id="medFieldPressao" alignment="0" max="32767" attributes="0"/>
-                  <Component id="medFieldNumReg" alignment="0" max="32767" attributes="0"/>
+                  <Component id="MedTemp" max="32767" attributes="0"/>
+                  <Component id="MedUmi" max="32767" attributes="0"/>
+                  <Component id="MedPress" max="32767" attributes="0"/>
+                  <Component id="MedReg" pref="150" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
           </Group>
@@ -44,27 +44,27 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="medTemperatura" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="medFieldTemperatura" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="MedTemp" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="medFieldUmidade" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="medUmidade" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="MedUmi" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="medFieldPressao" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="medPressao" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="MedPress" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="medFieldNumReg" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="medNumReg" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="MedReg" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="20" max="32767" attributes="0"/>
+              <EmptySpace pref="23" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -90,13 +90,13 @@
         <Property name="text" type="java.lang.String" value="N&#xfa;mero de Registros"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="medFieldTemperatura">
+    <Component class="javax.swing.JLabel" name="MedTemp">
     </Component>
-    <Component class="javax.swing.JTextField" name="medFieldUmidade">
+    <Component class="javax.swing.JLabel" name="MedUmi">
     </Component>
-    <Component class="javax.swing.JTextField" name="medFieldPressao">
+    <Component class="javax.swing.JLabel" name="MedPress">
     </Component>
-    <Component class="javax.swing.JTextField" name="medFieldNumReg">
+    <Component class="javax.swing.JLabel" name="MedReg">
     </Component>
   </SubComponents>
 </Form>
