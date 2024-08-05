@@ -133,6 +133,7 @@ public class DadosTempo extends javax.swing.JInternalFrame
         try
         {
             data = LocalDate.parse(dataField.getText(), formatadorData);
+            dataField.setText("");
             System.out.println(data);
         } catch (Exception e)
         {
@@ -142,8 +143,11 @@ public class DadosTempo extends javax.swing.JInternalFrame
 
         System.out.println("hello");
         float temperaturaCelsius = Float.parseFloat(temperaturaField.getText());
+        temperaturaField.setText("");
         float umidadePorcentagem = Float.parseFloat(umidadeField.getText());
+        umidadeField.setText("");
         float pressaoPascal = Float.parseFloat(pressaoField.getText());
+        pressaoField.setText("");
 
         presenter.adicionarDado(data, temperaturaCelsius, umidadePorcentagem, pressaoPascal);
 

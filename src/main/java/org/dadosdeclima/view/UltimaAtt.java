@@ -114,15 +114,23 @@ public class UltimaAtt extends javax.swing.JInternalFrame implements Observer
     @Override
     public void update(DadoClimatico event)
     {
-        if(!event.equals( presenter ))
-            return;
-
         DateTimeFormatter formatadorData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        if(!event.equals( presenter.ultimo() ))
+        {
+            UltData.setText(String.valueOf(presenter.ultimo().getData().format(formatadorData)));
+            UltPressao.setText(String.valueOf(presenter.ultimo().getPressaoPascal()));
+            UltTemperatura.setText(String.valueOf(presenter.ultimo().getTemperaturaCelsius()));
+            UltUmidade.setText(String.valueOf(presenter.ultimo().getUmidadePorcentagem()));
+            return;
+        }
+
+
 
         UltData.setText(String.valueOf(event.getData().format(formatadorData)));
         UltPressao.setText(String.valueOf(event.getPressaoPascal()));
-        UltTemperatura.setText(String.valueOf(event.getUmidadePorcentagem()));
-        UltUmidade.setText(String.valueOf(event.getTemperaturaCelsius()));
+        UltTemperatura.setText(String.valueOf(event.getTemperaturaCelsius()));
+        UltUmidade.setText(String.valueOf(event.getUmidadePorcentagem()));
     }
     // End of variables declaration//GEN-END:variables
 }

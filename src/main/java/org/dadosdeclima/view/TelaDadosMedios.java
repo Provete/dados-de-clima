@@ -112,6 +112,7 @@ public class TelaDadosMedios extends javax.swing.JInternalFrame implements Obser
     @Override
     public void update(DadoClimatico event)
     {
+
         DadosPresenter.DadosMedios dadosMedios = presenter.dadosMedia();
         System.out.println("hello");
 

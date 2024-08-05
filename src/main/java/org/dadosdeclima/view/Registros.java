@@ -100,14 +100,14 @@ public class Registros extends javax.swing.JInternalFrame implements Observer
     private void removerButtonActionPerformed(java.awt.event.ActionEvent evt)
     {//GEN-FIRST:event_removerButtonActionPerformed
         int selectedRowIndex = jTable1.getSelectedRow();
-
+        System.out.println(selectedRowIndex + " asasdasd");
         if(selectedRowIndex == -1)
             return;
 
         LocalDate localDate = LocalDate.parse( jTable1.getValueAt(selectedRowIndex, 0).toString() );
-        float temp = (float)jTable1.getValueAt(selectedRowIndex, 1);
-        float umidade = (float)jTable1.getValueAt(selectedRowIndex, 2);
-        float pressao = (float)jTable1.getValueAt(selectedRowIndex, 3);
+        float temp = Float.parseFloat(jTable1.getValueAt(selectedRowIndex, 1).toString());
+        float umidade = Float.parseFloat(jTable1.getValueAt(selectedRowIndex, 2).toString());
+        float pressao = Float.parseFloat(jTable1.getValueAt(selectedRowIndex, 3).toString());
 
         DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
         tableModel.removeRow(selectedRowIndex);
@@ -123,7 +123,15 @@ public class Registros extends javax.swing.JInternalFrame implements Observer
     @Override
     public void update(DadoClimatico event)
     {
+        if(!event.equals( presenter.ultimo() ))
+            return;
 
+        Object[] dados = new Object[]{event.getData().toString(),
+                event.getTemperaturaCelsius(),
+                event.getUmidadePorcentagem(),
+                event.getPressaoPascal()};
+        DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
+        tableModel.addRow(dados);
     }
     // End of variables declaration//GEN-END:variables
 }
