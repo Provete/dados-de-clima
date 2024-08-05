@@ -17,7 +17,7 @@ public class JsonLogger implements Logger
             "\t\"data\": \"%s\",\n" +
             "\t\"hora\": \"%s\",\n" +
             "\t\"operacao\": \"%s\"\n" +
-            "},\n";
+            "}\n";
 
     public JsonLogger(String pathArquivo)
     {
@@ -27,7 +27,7 @@ public class JsonLogger implements Logger
     @Override
     public void log(String operacao)
     {
-        File arquivo = new File(pathArquivo + "\\dados\\log.json");
+        File arquivo = new File(pathArquivo);
 
         criarSeInexistente(arquivo);
         LocalDateTime agora = LocalDateTime.now();
@@ -46,7 +46,6 @@ public class JsonLogger implements Logger
             bufferedWriter = new BufferedWriter(fileWriter);
 
             bufferedWriter.write(json);
-            System.out.println("json salvo com sucesso\n" + json);
 
         } catch (IOException e)
         {

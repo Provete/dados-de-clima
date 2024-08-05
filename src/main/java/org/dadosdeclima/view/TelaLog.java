@@ -4,16 +4,37 @@
  */
 package org.dadosdeclima.view;
 
+import org.dadosdeclima.log.JsonLogger;
+import org.dadosdeclima.log.LogAdapter;
+import org.dadosdeclima.log.Logger;
+import org.dadosdeclima.log.XmlLogger;
+import org.dadosdeclima.model.DadoClimatico;
+import org.dadosdeclima.observable.Observer;
+import org.dadosdeclima.presenter.DadosPresenter;
+
+import java.nio.file.Paths;
+
 /**
  *
  * @author Ruan Ribeiro
  */
-public class TelaLog extends javax.swing.JInternalFrame {
-
+public class TelaLog extends javax.swing.JInternalFrame
+{
+    boolean jsonSelected;
+    LogAdapter logger;
+    String jsonFilePath;
+    String xmlFilePath;
     /**
      * Creates new form TelaLog
      */
     public TelaLog() {
+        jsonSelected = true;
+
+        String dadosPath = Paths.get("").toAbsolutePath().toString();
+        jsonFilePath = dadosPath + "\\dados\\log.json";
+        xmlFilePath = dadosPath + "\\dados\\log.xml";
+
+        logger = new LogAdapter(new JsonLogger(jsonFilePath));
         initComponents();
     }
 
@@ -33,6 +54,11 @@ public class TelaLog extends javax.swing.JInternalFrame {
         setTitle("Configuração do Sistema");
 
         saveButtonLog.setText("Salvar");
+        saveButtonLog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonLogActionPerformed(evt);
+            }
+        });
 
         labelLog.setText("Log");
 
@@ -67,10 +93,35 @@ public class TelaLog extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void saveButtonLogActionPerformed(java.awt.event.ActionEvent evt)
+    {//GEN-FIRST:event_saveButtonLogActionPerformed
+        jsonSelected = BOX.getSelectedIndex() == 0;
+
+        if(jsonSelected)
+        {
+            logger.setLogger(new JsonLogger(jsonFilePath));
+        }
+        else
+        {
+            logger.setLogger(new XmlLogger(xmlFilePath));
+        }
+    }//GEN-LAST:event_saveButtonLogActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> BOX;
     private javax.swing.JLabel labelLog;
     private javax.swing.JButton saveButtonLog;
+
+
+    public void logRemocao()
+    {
+        logger.log("Remoção");
+    }
+
+    public void logInclusao()
+    {
+        logger.log("Inclusão");
+    }
     // End of variables declaration//GEN-END:variables
 }

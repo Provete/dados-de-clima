@@ -114,7 +114,6 @@ public class TelaDadosMedios extends javax.swing.JInternalFrame implements Obser
     {
 
         DadosPresenter.DadosMedios dadosMedios = presenter.dadosMedia();
-        System.out.println("hello");
 
         MedReg.setText(String.valueOf(dadosMedios.numeroRegistros));
         MedPress.setText(String.valueOf(dadosMedios.pressaoPascalMedia));

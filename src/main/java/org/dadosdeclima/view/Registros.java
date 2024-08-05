@@ -100,7 +100,6 @@ public class Registros extends javax.swing.JInternalFrame implements Observer
     private void removerButtonActionPerformed(java.awt.event.ActionEvent evt)
     {//GEN-FIRST:event_removerButtonActionPerformed
         int selectedRowIndex = jTable1.getSelectedRow();
-        System.out.println(selectedRowIndex + " asasdasd");
         if(selectedRowIndex == -1)
             return;
 

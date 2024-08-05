@@ -24,12 +24,14 @@ public class DadosPresenter extends Observable
     {
         DadoClimatico dadoClimatico = new DadoClimatico(data, temperaturaCelsius, umidadePorcentagem, pressaoPascal);
         this.dadosClimaticos.add(dadoClimatico);
+        mainTela.getLogPanel().logInclusao();
         notify(dadoClimatico);
     }
 
     public void removerDado(DadoClimatico dado)
     {
         this.dadosClimaticos.remove(dado);
+        mainTela.getLogPanel().logRemocao();
         this.notify(dado);
     }
 
@@ -103,7 +105,7 @@ public class DadosPresenter extends Observable
         }
     }
 
-    class DadosClimaticosMaximasEMinimas
+    public class DadosClimaticosMaximasEMinimas
     {
         public DadoClimatico temperaturaMinima;
         public DadoClimatico temperaturaMaxima;
@@ -131,5 +133,10 @@ public class DadosPresenter extends Observable
             return null;
 
         return dadosClimaticos.get(dadosClimaticos.size()-1);
+    }
+
+    public int getNumeroRegistros()
+    {
+        return dadosClimaticos.size();
     }
 }

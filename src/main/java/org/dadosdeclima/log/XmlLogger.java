@@ -28,7 +28,7 @@ public class XmlLogger implements Logger
     @Override
     public void log(String operacao)
     {
-        File arquivo = new File(pathArquivo + "\\dados\\log.xml");
+        File arquivo = new File(pathArquivo);
 
         criarSeInexistente(arquivo);
         LocalDateTime agora = LocalDateTime.now();
@@ -48,7 +48,6 @@ public class XmlLogger implements Logger
             bufferedWriter = new BufferedWriter(fileWriter);
 
             bufferedWriter.write(xml);
-            System.out.println("XML salvo com sucesso\n" + xml);
 
         } catch (IOException e)
         {

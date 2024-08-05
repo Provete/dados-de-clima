@@ -9,18 +9,15 @@ import org.dadosdeclima.observable.Observer;
 import org.dadosdeclima.presenter.DadosPresenter;
 import org.dadosdeclima.view.DadosTempo;
 
-/**
- *
- * @author Ruan Ribeiro
- */
 public class MainTela extends javax.swing.JFrame implements Observer
 {
-    DadosPresenter presenter;
-    DadosTempo dadosTempoPanel;
-    Registros registrosPanel;
-    TelaDadosMedios dadosMediosPanel;
-    TelaLog logPanel;
-    UltimaAtt ultimaAttPanel;
+    private DadosPresenter presenter;
+    private DadosTempo dadosTempoPanel;
+    private Registros registrosPanel;
+    private TelaDadosMedios dadosMediosPanel;
+    private TelaLog logPanel;
+    private UltimaAtt ultimaAttPanel;
+    private TelaMinMax telaMinMax;
     
     /**
      * Creates new form MainTela
@@ -35,9 +32,10 @@ public class MainTela extends javax.swing.JFrame implements Observer
         registrosPanel = new Registros(presenter);
         logPanel = new TelaLog();
         ultimaAttPanel = new UltimaAtt(presenter);
-        
-        
-        
+        telaMinMax = new TelaMinMax(presenter);
+
+        jLabel1.setText("Numero de registros: " + presenter.getNumeroRegistros());
+
         addComponentsToMainPane();
         setVisible(true);
     }
@@ -49,6 +47,7 @@ public class MainTela extends javax.swing.JFrame implements Observer
         desktopPane.add(dadosTempoPanel);
         desktopPane.add(logPanel);
         desktopPane.add(ultimaAttPanel);
+        desktopPane.add(telaMinMax);
     }
 
     /**
@@ -124,37 +123,6 @@ public class MainTela extends javax.swing.JFrame implements Observer
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainTela(null).setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;
@@ -168,9 +136,16 @@ public class MainTela extends javax.swing.JFrame implements Observer
     {
         dadosMediosPanel.update(event);
         registrosPanel.update(event);
-        logPanel.update(event);
         ultimaAttPanel.update(event);
+        telaMinMax.update(event);
+
+        jLabel1.setText("Numero de registros: " + presenter.getNumeroRegistros());
     }
     // End of variables declaration//GEN-END:variables
 
+
+    public TelaLog getLogPanel()
+    {
+        return logPanel;
+    }
 }

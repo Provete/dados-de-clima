@@ -134,14 +134,12 @@ public class DadosTempo extends javax.swing.JInternalFrame
         {
             data = LocalDate.parse(dataField.getText(), formatadorData);
             dataField.setText("");
-            System.out.println(data);
         } catch (Exception e)
         {
             System.out.println("data Invalida");
             e.printStackTrace();
         }
 
-        System.out.println("hello");
         float temperaturaCelsius = Float.parseFloat(temperaturaField.getText());
         temperaturaField.setText("");
         float umidadePorcentagem = Float.parseFloat(umidadeField.getText());
