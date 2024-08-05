@@ -4,11 +4,17 @@
  */
 package org.dadosdeclima.view;
 
+import org.dadosdeclima.model.DadoClimatico;
+import org.dadosdeclima.observable.Observer;
+
+import java.time.format.DateTimeFormatter;
+
 /**
  *
  * @author Ruan Ribeiro
  */
-public class UltimaAtt extends javax.swing.JInternalFrame {
+public class UltimaAtt extends javax.swing.JInternalFrame implements Observer
+{
 
     /**
      * Creates new form UltimaAtt
@@ -102,5 +108,16 @@ public class UltimaAtt extends javax.swing.JInternalFrame {
     private javax.swing.JLabel ultPress;
     private javax.swing.JLabel ultTemp;
     private javax.swing.JLabel ultUmi;
+
+    @Override
+    public void update(DadoClimatico event)
+    {
+        DateTimeFormatter formatadorData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        UltData.setText(String.valueOf(event.getData().format(formatadorData)));
+        UltPressao.setText(String.valueOf(event.getPressaoPascal()));
+        UltTemperatura.setText(String.valueOf(event.getUmidadePorcentagem()));
+        UltUmidade.setText(String.valueOf(event.getTemperaturaCelsius()));
+    }
     // End of variables declaration//GEN-END:variables
 }

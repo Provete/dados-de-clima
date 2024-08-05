@@ -4,18 +4,21 @@
  */
 package org.dadosdeclima.view;
 
+import org.dadosdeclima.model.DadoClimatico;
+import org.dadosdeclima.observable.Observer;
+
 /**
  *
  * @author Ruan Ribeiro
  */
-public class TelaLog extends javax.swing.JInternalFrame {
+public class TelaLog extends javax.swing.JInternalFrame implements Observer
+{
 
     /**
      * Creates new form TelaLog
      */
     public TelaLog() {
         initComponents();
-        setVisible(true);
     }
 
     /**
@@ -40,6 +43,12 @@ public class TelaLog extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    @Override
+    public void update(DadoClimatico event)
+    {
+
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

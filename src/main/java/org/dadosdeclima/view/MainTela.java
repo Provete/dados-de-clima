@@ -4,6 +4,8 @@
  */
 package org.dadosdeclima.view;
 
+import org.dadosdeclima.model.DadoClimatico;
+import org.dadosdeclima.observable.Observer;
 import org.dadosdeclima.presenter.DadosPresenter;
 import org.dadosdeclima.view.DadosTempo;
 
@@ -11,8 +13,9 @@ import org.dadosdeclima.view.DadosTempo;
  *
  * @author Ruan Ribeiro
  */
-public class MainTela extends javax.swing.JFrame {
-    
+public class MainTela extends javax.swing.JFrame implements Observer
+{
+    DadosPresenter presenter;
     DadosTempo dadosTempoPanel;
     Registros registrosPanel;
     TelaDadosMedios dadosMediosPanel;
@@ -24,11 +27,12 @@ public class MainTela extends javax.swing.JFrame {
      */
     
     
-    public MainTela() {
+    public MainTela(DadosPresenter presenter) {
         initComponents();
-        dadosTempoPanel = new DadosTempo();
-        dadosMediosPanel = new TelaDadosMedios();
-        registrosPanel = new Registros();
+        this.presenter = presenter;
+        dadosTempoPanel = new DadosTempo(presenter);
+        dadosMediosPanel = new TelaDadosMedios(presenter);
+        registrosPanel = new Registros(presenter);
         logPanel = new TelaLog();
         ultimaAttPanel = new UltimaAtt();
         
@@ -112,8 +116,10 @@ public class MainTela extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void openTelaLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openTelaLogActionPerformed
-        logPanel = new TelaLog();    }//GEN-LAST:event_openTelaLogActionPerformed
+    private void openTelaLogActionPerformed(java.awt.event.ActionEvent evt)
+    {//GEN-FIRST:event_openTelaLogActionPerformed
+        logPanel.setVisible(true);
+    }//GEN-LAST:event_openTelaLogActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,7 +151,7 @@ public class MainTela extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainTela().setVisible(true);
+                new MainTela(null).setVisible(true);
             }
         });
     }
@@ -156,6 +162,15 @@ public class MainTela extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openTelaLog;
+
+    @Override
+    public void update(DadoClimatico event)
+    {
+        dadosMediosPanel.update(event);
+        registrosPanel.update(event);
+        logPanel.update(event);
+        ultimaAttPanel.update(event);
+    }
     // End of variables declaration//GEN-END:variables
 
 }

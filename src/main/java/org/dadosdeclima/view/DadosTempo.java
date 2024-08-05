@@ -4,13 +4,24 @@
  */
 package org.dadosdeclima.view;
 
-public class DadosTempo extends javax.swing.JInternalFrame {
+import org.dadosdeclima.model.DadoClimatico;
+import org.dadosdeclima.observable.Observer;
+import org.dadosdeclima.presenter.DadosPresenter;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+public class DadosTempo extends javax.swing.JInternalFrame
+{
+    private DadosPresenter presenter;
+    private DateTimeFormatter formatadorData;
     /**
      * Creates new form DadosTempo
      */
-    public DadosTempo() {
+    public DadosTempo(DadosPresenter presenter) {
         initComponents();
+        formatadorData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        this.presenter = presenter;
         setVisible(true);
     }
 
@@ -28,10 +39,10 @@ public class DadosTempo extends javax.swing.JInternalFrame {
         Umidade = new javax.swing.JLabel();
         Pressao = new javax.swing.JLabel();
         Incluir = new javax.swing.JButton();
-        dataField = new javax.swing.JTextField();
         temperaturaField = new javax.swing.JTextField();
         umidadeField = new javax.swing.JTextField();
         pressaoField = new javax.swing.JTextField();
+        dataField = new javax.swing.JFormattedTextField();
 
         setTitle("Dados do Tempo");
 
@@ -50,7 +61,7 @@ public class DadosTempo extends javax.swing.JInternalFrame {
             }
         });
 
-        dataField.setToolTipText("");
+        dataField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
         dataField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dataFieldActionPerformed(evt);
@@ -70,16 +81,19 @@ public class DadosTempo extends javax.swing.JInternalFrame {
                         .addComponent(pressaoField, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(Umidade)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                         .addComponent(umidadeField, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(Temperatura)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(temperaturaField, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(Data)
-                        .addGap(102, 102, 102)
-                        .addComponent(dataField, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Temperatura)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(Data)
+                                .addGap(102, 102, 102)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(temperaturaField, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                            .addComponent(dataField))))
                 .addContainerGap(46, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -113,21 +127,41 @@ public class DadosTempo extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void IncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IncluirActionPerformed
-        // TODO add your handling code here:
+    private void IncluirActionPerformed(java.awt.event.ActionEvent evt)
+    {//GEN-FIRST:event_IncluirActionPerformed
+        LocalDate data = null;
+        try
+        {
+            data = LocalDate.parse(dataField.getText(), formatadorData);
+            System.out.println(data);
+        } catch (Exception e)
+        {
+            System.out.println("data Invalida");
+            e.printStackTrace();
+        }
+
+        System.out.println("hello");
+        float temperaturaCelsius = Float.parseFloat(temperaturaField.getText());
+        float umidadePorcentagem = Float.parseFloat(umidadeField.getText());
+        float pressaoPascal = Float.parseFloat(pressaoField.getText());
+
+        presenter.adicionarDado(data, temperaturaCelsius, umidadePorcentagem, pressaoPascal);
+
     }//GEN-LAST:event_IncluirActionPerformed
 
     private void dataFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataFieldActionPerformed
-  
+
+
     }//GEN-LAST:event_dataFieldActionPerformed
-    
+
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Data;
     private javax.swing.JButton Incluir;
     private javax.swing.JLabel Pressao;
     private javax.swing.JLabel Temperatura;
     private javax.swing.JLabel Umidade;
-    private javax.swing.JTextField dataField;
+    private javax.swing.JFormattedTextField dataField;
     private javax.swing.JTextField pressaoField;
     private javax.swing.JTextField temperaturaField;
     private javax.swing.JTextField umidadeField;

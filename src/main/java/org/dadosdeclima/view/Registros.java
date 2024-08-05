@@ -4,16 +4,25 @@
  */
 package org.dadosdeclima.view;
 
+import org.dadosdeclima.model.DadoClimatico;
+import org.dadosdeclima.observable.Observer;
+import org.dadosdeclima.presenter.DadosPresenter;
+import javax. swing. table. TableModel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Ruan Ribeiro
  */
-public class Registros extends javax.swing.JInternalFrame {
-
+public class Registros extends javax.swing.JInternalFrame implements Observer
+{
+    DadosPresenter presenter;
     /**
      * Creates new form Registros
      */
-    public Registros() {
+    public Registros(DadosPresenter presenter)
+    {
+        this.presenter = presenter;
         initComponents();
         setVisible(true);
     }
@@ -32,15 +41,27 @@ public class Registros extends javax.swing.JInternalFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Data", "Temperatura", "Umidade", "Pressão"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -67,5 +88,16 @@ public class Registros extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+
+    @Override
+    public void update(DadoClimatico event)
+    {
+        Object[] dados = new Object[]{event.getData().toString(),
+                event.getTemperaturaCelsius() + "°",
+                event.getUmidadePorcentagem() + "%",
+                event.getPressaoPascal() + "Pa"};
+        DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
+        tableModel.addRow(dados);
+    }
     // End of variables declaration//GEN-END:variables
 }

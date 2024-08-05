@@ -5,21 +5,26 @@ import java.util.ArrayList;
 
 import org.dadosdeclima.model.DadoClimatico;
 import org.dadosdeclima.observable.*;
+import org.dadosdeclima.view.MainTela;
 
 public class DadosPresenter extends Observable
 {
-    ArrayList<DadoClimatico> dadosClimaticos;
+    private ArrayList<DadoClimatico> dadosClimaticos;
+    private MainTela mainTela;
+
 
     public DadosPresenter()
     {
         dadosClimaticos = new ArrayList<DadoClimatico>();
+        mainTela = new MainTela(this);
+        subscribe(mainTela);
     }
 
     public void adicionarDado(LocalDate data, float temperaturaCelsius, float umidadePorcentagem, float pressaoPascal)
     {
         DadoClimatico dadoClimatico = new DadoClimatico(data, temperaturaCelsius, umidadePorcentagem, pressaoPascal);
         this.dadosClimaticos.add(dadoClimatico);
-        this.notify(dadoClimatico);
+        notify(dadoClimatico);
     }
 
     public void removerDado(DadoClimatico dado)
@@ -28,7 +33,7 @@ public class DadosPresenter extends Observable
         this.notify(dado);
     }
 
-    public DadosMedios temperaturaMedia()
+    public DadosMedios dadosMedia()
     {
 
         DadosMedios dadosMedios = new DadosMedios();
@@ -82,7 +87,7 @@ public class DadosPresenter extends Observable
         return dados;
     }
 
-    class DadosMedios
+    public class DadosMedios
     {
         public float temperaturaCelsiusMedia;
         public float humidadePorcentagemMedia;

@@ -4,16 +4,24 @@
  */
 package org.dadosdeclima.view;
 
+import org.dadosdeclima.model.DadoClimatico;
+import org.dadosdeclima.observable.Observer;
+import org.dadosdeclima.presenter.DadosPresenter;
+
 /**
  *
  * @author Ruan Ribeiro
  */
-public class TelaDadosMedios extends javax.swing.JInternalFrame {
+public class TelaDadosMedios extends javax.swing.JInternalFrame implements Observer
+{
+
+    DadosPresenter presenter;
 
     /**
      * Creates new form TelaDadosMedios
      */
-    public TelaDadosMedios() {
+    public TelaDadosMedios(DadosPresenter presenter) {
+        this.presenter = presenter;
         initComponents();
         setVisible(true);
     }
@@ -100,5 +108,17 @@ public class TelaDadosMedios extends javax.swing.JInternalFrame {
     private javax.swing.JLabel medPressao;
     private javax.swing.JLabel medTemperatura;
     private javax.swing.JLabel medUmidade;
+
+    @Override
+    public void update(DadoClimatico event)
+    {
+        DadosPresenter.DadosMedios dadosMedios = presenter.dadosMedia();
+        System.out.println("hello");
+
+        MedReg.setText(String.valueOf(dadosMedios.numeroRegistros));
+        MedPress.setText(String.valueOf(dadosMedios.pressaoPascalMedia));
+        MedUmi.setText(String.valueOf(dadosMedios.humidadePorcentagemMedia));
+        MedTemp.setText(String.valueOf(dadosMedios.temperaturaCelsiusMedia));
+    }
     // End of variables declaration//GEN-END:variables
 }

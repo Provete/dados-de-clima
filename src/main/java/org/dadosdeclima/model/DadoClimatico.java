@@ -67,9 +67,4 @@ public class DadoClimatico
 
         return true;
     }
-
-    public String toJson()
-    {
-        return "";
-    }
 }
