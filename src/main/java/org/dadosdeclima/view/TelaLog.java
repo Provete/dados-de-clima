@@ -4,15 +4,11 @@
  */
 package org.dadosdeclima.view;
 
-import org.dadosdeclima.model.DadoClimatico;
-import org.dadosdeclima.observable.Observer;
-
 /**
  *
  * @author Ruan Ribeiro
  */
-public class TelaLog extends javax.swing.JInternalFrame implements Observer
-{
+public class TelaLog extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form TelaLog
@@ -30,27 +26,51 @@ public class TelaLog extends javax.swing.JInternalFrame implements Observer
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        saveButtonLog = new javax.swing.JButton();
+        labelLog = new javax.swing.JLabel();
+        BOX = new javax.swing.JComboBox<>();
+
+        setTitle("Configuração do Sistema");
+
+        saveButtonLog.setText("Salvar");
+
+        labelLog.setText("Log");
+
+        BOX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "JSON", "XML" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(saveButtonLog)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelLog)
+                        .addGap(30, 30, 30)
+                        .addComponent(BOX, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelLog)
+                    .addComponent(BOX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(saveButtonLog)
+                .addGap(24, 24, 24))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    @Override
-    public void update(DadoClimatico event)
-    {
-
-    }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> BOX;
+    private javax.swing.JLabel labelLog;
+    private javax.swing.JButton saveButtonLog;
     // End of variables declaration//GEN-END:variables
 }
