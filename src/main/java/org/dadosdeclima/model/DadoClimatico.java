@@ -1,16 +1,18 @@
 package org.dadosdeclima.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class DadoClimatico
 {
-    private Date data;
+    private LocalDate data;
     private float temperaturaCelsius;
     private float umidadePorcentagem;
     private float pressaoPascal;
 
-    public DadoClimatico(float temperaturaCelsius, float umidadePorcentagem, float pressaoPascal)
+    public DadoClimatico(LocalDate data, float temperaturaCelsius, float umidadePorcentagem, float pressaoPascal)
     {
+        this.data = data;
         this.temperaturaCelsius = temperaturaCelsius;
         this.umidadePorcentagem = umidadePorcentagem;
         this.pressaoPascal = pressaoPascal;
@@ -18,7 +20,7 @@ public class DadoClimatico
 
 
 
-    public Date getData()
+    public LocalDate getData()
     {
         return data;
     }
