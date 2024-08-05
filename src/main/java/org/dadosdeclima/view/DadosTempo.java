@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package org.example;
+package org.dadosdeclima.view;
 
 public class DadosTempo extends javax.swing.JInternalFrame {
 
@@ -11,6 +11,7 @@ public class DadosTempo extends javax.swing.JInternalFrame {
      */
     public DadosTempo() {
         initComponents();
+        setVisible(true);
     }
 
     /**

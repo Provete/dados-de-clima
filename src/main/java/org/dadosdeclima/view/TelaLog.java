@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package org.example;
+package org.dadosdeclima.view;
 
 /**
  *
@@ -15,6 +15,7 @@ public class TelaLog extends javax.swing.JInternalFrame {
      */
     public TelaLog() {
         initComponents();
+        setVisible(true);
     }
 
     /**

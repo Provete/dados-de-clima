@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package org.example;
+package org.dadosdeclima.view;
 
 /**
  *
@@ -15,8 +15,11 @@ public class UltimaAtt extends javax.swing.JInternalFrame {
      */
     public UltimaAtt() {
         initComponents();
+        setVisible(true);
     }
 
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

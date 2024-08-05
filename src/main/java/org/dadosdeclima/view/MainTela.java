@@ -2,19 +2,49 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/MDIApplication.java to edit this template
  */
-package org.example;
+package org.dadosdeclima.view;
+
+import org.dadosdeclima.presenter.DadosPresenter;
+import org.dadosdeclima.view.DadosTempo;
 
 /**
  *
  * @author Ruan Ribeiro
  */
 public class MainTela extends javax.swing.JFrame {
-
+    
+    DadosTempo dadosTempoPanel;
+    Registros registrosPanel;
+    TelaDadosMedios dadosMediosPanel;
+    TelaLog logPanel;
+    UltimaAtt ultimaAttPanel;
+    
     /**
      * Creates new form MainTela
      */
+    
+    
     public MainTela() {
         initComponents();
+        dadosTempoPanel = new DadosTempo();
+        dadosMediosPanel = new TelaDadosMedios();
+        registrosPanel = new Registros();
+        logPanel = new TelaLog();
+        ultimaAttPanel = new UltimaAtt();
+        
+        
+        
+        addComponentsToMainPane();
+        setVisible(true);
+    }
+    
+    public final void addComponentsToMainPane()
+    {
+        desktopPane.add(dadosMediosPanel);
+        desktopPane.add(registrosPanel);
+        desktopPane.add(dadosTempoPanel);
+        desktopPane.add(logPanel);
+        desktopPane.add(ultimaAttPanel);
     }
 
     /**
@@ -27,45 +57,63 @@ public class MainTela extends javax.swing.JFrame {
     private void initComponents() {
 
         desktopPane = new javax.swing.JDesktopPane();
-        jToolBar1 = new javax.swing.JToolBar();
-        Configurar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        menuBar = new javax.swing.JMenuBar();
+        fileMenu = new javax.swing.JMenu();
+        openTelaLog = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dados de Clima");
 
-        jToolBar1.setRollover(true);
+        desktopPane.setRequestFocusEnabled(false);
 
-        Configurar.setText("Configurar");
-        Configurar.setFocusable(false);
-        Configurar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        Configurar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Configurar.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setText("Número de registros: xx");
+        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+
+        fileMenu.setMnemonic('f');
+        fileMenu.setText("Configuração");
+
+        openTelaLog.setMnemonic('o');
+        openTelaLog.setText("Log");
+        openTelaLog.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConfigurarActionPerformed(evt);
+                openTelaLogActionPerformed(evt);
             }
         });
-        jToolBar1.add(Configurar);
+        fileMenu.add(openTelaLog);
 
-        desktopPane.add(jToolBar1);
-        jToolBar1.setBounds(0, 0, 400, 20);
+        menuBar.add(fileMenu);
+
+        setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(desktopPane)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 319, Short.MAX_VALUE)
+                        .addComponent(jLabel1)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
+                .addGap(9, 9, 9))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ConfigurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfigurarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ConfigurarActionPerformed
+    private void openTelaLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openTelaLogActionPerformed
+        logPanel = new TelaLog();    }//GEN-LAST:event_openTelaLogActionPerformed
 
     /**
      * @param args the command line arguments
@@ -98,17 +146,16 @@ public class MainTela extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainTela().setVisible(true);
-                new DadosTempo().setVisible(true);
-                new TelaDadosMedios().setVisible(true);
-                new UltimaAtt().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Configurar;
     private javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JMenu fileMenu;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenuItem openTelaLog;
     // End of variables declaration//GEN-END:variables
 
 }
