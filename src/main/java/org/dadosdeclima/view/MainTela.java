@@ -34,7 +34,7 @@ public class MainTela extends javax.swing.JFrame implements Observer
         dadosMediosPanel = new TelaDadosMedios(presenter);
         registrosPanel = new Registros(presenter);
         logPanel = new TelaLog();
-        ultimaAttPanel = new UltimaAtt();
+        ultimaAttPanel = new UltimaAtt(presenter);
         
         
         

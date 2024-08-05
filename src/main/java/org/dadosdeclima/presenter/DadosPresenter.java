@@ -124,4 +124,12 @@ public class DadosPresenter extends Observable
             this.pressaoMaxima = inicial;
         }
     }
+
+    public DadoClimatico ultimo()
+    {
+        if(dadosClimaticos.isEmpty())
+            return null;
+
+        return dadosClimaticos.get(dadosClimaticos.size()-1);
+    }
 }

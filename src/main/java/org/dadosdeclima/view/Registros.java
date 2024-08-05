@@ -9,6 +9,7 @@ import org.dadosdeclima.observable.Observer;
 import org.dadosdeclima.presenter.DadosPresenter;
 import javax. swing. table. TableModel;
 import javax.swing.table.DefaultTableModel;
+import java.time.LocalDate;
 
 /**
  *
@@ -38,6 +39,7 @@ public class Registros extends javax.swing.JInternalFrame implements Observer
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        removerButton = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -64,13 +66,23 @@ public class Registros extends javax.swing.JInternalFrame implements Observer
         });
         jScrollPane1.setViewportView(jTable1);
 
+        removerButton.setText("Remover");
+        removerButton.setToolTipText("");
+        removerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removerButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(removerButton)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -78,26 +90,40 @@ public class Registros extends javax.swing.JInternalFrame implements Observer
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(removerButton))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void removerButtonActionPerformed(java.awt.event.ActionEvent evt)
+    {//GEN-FIRST:event_removerButtonActionPerformed
+        int selectedRowIndex = jTable1.getSelectedRow();
+
+        if(selectedRowIndex == -1)
+            return;
+
+        LocalDate localDate = LocalDate.parse( jTable1.getValueAt(selectedRowIndex, 0).toString() );
+        float temp = (float)jTable1.getValueAt(selectedRowIndex, 1);
+        float umidade = (float)jTable1.getValueAt(selectedRowIndex, 2);
+        float pressao = (float)jTable1.getValueAt(selectedRowIndex, 3);
+
+        DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
+        tableModel.removeRow(selectedRowIndex);
+        presenter.removerDado(new DadoClimatico(localDate, temp, umidade, pressao));
+    }//GEN-LAST:event_removerButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton removerButton;
 
     @Override
     public void update(DadoClimatico event)
     {
-        Object[] dados = new Object[]{event.getData().toString(),
-                event.getTemperaturaCelsius() + "°",
-                event.getUmidadePorcentagem() + "%",
-                event.getPressaoPascal() + "Pa"};
-        DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
-        tableModel.addRow(dados);
+
     }
     // End of variables declaration//GEN-END:variables
 }

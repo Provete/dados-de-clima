@@ -6,6 +6,7 @@ package org.dadosdeclima.view;
 
 import org.dadosdeclima.model.DadoClimatico;
 import org.dadosdeclima.observable.Observer;
+import org.dadosdeclima.presenter.DadosPresenter;
 
 import java.time.format.DateTimeFormatter;
 
@@ -15,11 +16,12 @@ import java.time.format.DateTimeFormatter;
  */
 public class UltimaAtt extends javax.swing.JInternalFrame implements Observer
 {
-
+    DadosPresenter presenter;
     /**
      * Creates new form UltimaAtt
      */
-    public UltimaAtt() {
+    public UltimaAtt(DadosPresenter presenter) {
+        this.presenter = presenter;
         initComponents();
         setVisible(true);
     }
@@ -112,6 +114,9 @@ public class UltimaAtt extends javax.swing.JInternalFrame implements Observer
     @Override
     public void update(DadoClimatico event)
     {
+        if(!event.equals( presenter ))
+            return;
+
         DateTimeFormatter formatadorData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
         UltData.setText(String.valueOf(event.getData().format(formatadorData)));
