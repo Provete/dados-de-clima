@@ -49,10 +49,11 @@ public class DadosPresenter extends Observable
 
     public DadosClimaticosMaximasEMinimas maximasEMinimas()
     {
-        if(dadosClimaticos.size() == 0)
+        if(dadosClimaticos.isEmpty())
         {
             return null;
         }
+
         DadosClimaticosMaximasEMinimas dados = new DadosClimaticosMaximasEMinimas(dadosClimaticos.get(0));
 
         for(DadoClimatico d : dadosClimaticos)
